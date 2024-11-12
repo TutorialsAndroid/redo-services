@@ -7,32 +7,59 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
   color: white;
+}
+
+.App-header h1 {
+  font-size: 2.5em;
+  margin: 0.5em 0;
+}
+
+.App-header p {
+  font-size: 1.2em;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-services, .App-projects, .App-contact {
+  padding: 20px;
+  text-align: left;
+}
+
+.App-services h2, .App-projects h2, .App-contact h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.App-services ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.App-services li {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.projects-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.projects-gallery img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.App-contact p {
+  font-size: 1.2em;
+  margin: 5px 0;
 }
