@@ -3,8 +3,36 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  height: 40px;
+  margin-right: 20px;
+}
+
+.App-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #282c34;
+}
+
+.App-navbar img {
+  height: 40px;
+}
+
+.App-navbar-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.App-navbar-links li {
+  margin: 0 15px;
+}
+
+.App-navbar-links a {
+  color: #61dafb;
+  text-decoration: none;
 }
 
 .App-header {
@@ -13,53 +41,70 @@
   color: white;
 }
 
-.App-header h1 {
-  font-size: 2.5em;
-  margin: 0.5em 0;
-}
-
-.App-header p {
-  font-size: 1.2em;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 .App-services, .App-projects, .App-contact {
   padding: 20px;
-  text-align: left;
 }
 
-.App-services h2, .App-projects h2, .App-contact h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
+.projects-gallery img {
+  width: 200px;
+  height: auto;
+  margin: 10px;
 }
 
-.App-services ul {
-  list-style-type: none;
-  padding: 0;
+.App-services {
+  padding: 20px;
 }
 
-.App-services li {
+.App-services-row {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.App-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 30%;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.App-card img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.App-card h3 {
+  margin-top: 15px;
   font-size: 1.2em;
-  margin: 5px 0;
+}
+
+.App-card p {
+  margin: 10px 0;
 }
 
 .projects-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px; /* Adjust the gap between images as needed */
+  justify-content: center;
 }
 
 .projects-gallery img {
-  max-width: 100%;
+  width: calc(33.333% - 10px); /* 3 images per row with gap */
   height: auto;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
-.App-contact p {
-  font-size: 1.2em;
-  margin: 5px 0;
+@media (max-width: 768px) {
+  .projects-gallery img {
+    width: calc(50% - 10px); /* 2 images per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-gallery img {
+    width: 100%; /* 1 image per row on very small screens */
+  }
 }
