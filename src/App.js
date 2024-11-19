@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import './Contact.css';
-import webDevImg from './assets/pic.jpg'; // Add your image path
-import androidDevImg from './assets/pic1.jpeg'; // Add your image path
-import franchiseImg from './assets/pic3.jpg'; // Add your image path
-import projectImg1 from './assets/pic3.jpg'; // Add your image path
-import projectImg2 from './assets/pic3.jpg'; // Add your image path
-import projectImg3 from './assets/pic3.jpg'; // Add your image path
-import projectImg4 from './assets/pic3.jpg'; // Add your image path
-import projectImg5 from './assets/pic3.jpg'; // Add your image path
-import projectImg6 from './assets/pic3.jpg'; // Add your image path
+import webDevImg from './assets/web_development.png';
+import androidDevImg from './assets/android_development.jpeg';
+import franchiseImg from './assets/franchise_selling.png';
+import projectImg1 from './assets/projects_ss/pharma.png';
+import projectImg2 from './assets/projects_ss/coffee.png';
+import projectImg3 from './assets/projects_ss/cakeshop.png';
+import projectImg4 from './assets/projects_ss/bakeryshop.png';
+import projectImg5 from './assets/projects_ss/gym.png';
 
 function App() {
   const [formData, setFormData] = useState({
@@ -19,6 +18,23 @@ function App() {
     phone: '',
     message: ''
   });
+
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // New state for mobile menu
+
+  const projectsContainerRef = useRef(null);
+
+  const handleScrollLeft = () => {
+    if (projectsContainerRef.current) {
+      projectsContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const handleScrollRight = () => {
+    if (projectsContainerRef.current) {
+      projectsContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,15 +46,50 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log(formData);
   };
+
+  const projects = [
+    {
+      img: projectImg1,
+      title: 'Pharma Website',
+      description: 'A comprehensive website for a pharmaceutical company, featuring product listings, company information, and contact details.'
+    },
+    {
+      img: projectImg2,
+      title: 'Coffee Shop Website',
+      description: 'An engaging website for a coffee shop, showcasing the menu, special offers, and an online ordering system.'
+    },
+    {
+      img: projectImg3,
+      title: 'Cake Shop Website',
+      description: 'A delightful website for a cake shop, featuring a gallery of cakes, customer reviews, and an online order form.'
+    },
+    {
+      img: projectImg4,
+      title: 'Bakery Shop Website',
+      description: 'A charming website for a bakery shop, highlighting the variety of baked goods, daily specials, and store locations.'
+    },
+    {
+      img: projectImg5,
+      title: 'Gym Website',
+      description: 'A dynamic website for a gym, providing class schedules, trainer profiles, membership options, and a booking system.'
+    }
+  ];
+
+  // We always show all projects for larger screens
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, 3);
 
   return (
     <div className="App">
       <nav className="App-navbar">
         <img src={logo} className="App-logo" alt="logo" />
-        <ul className="App-navbar-links">
+        <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+        <ul className={`App-navbar-links ${isMenuOpen ? 'open' : ''}`}>
           <li><a href="#services">Our Services</a></li>
           <li><a href="#projects">Our Projects</a></li>
           <li><a href="#contact">Contact Us</a></li>
@@ -66,22 +117,30 @@ function App() {
           <div className="App-card">
             <img src={franchiseImg} alt="Franchise Selling" />
             <h3>Franchise Selling</h3>
-            <p>We offer franchise opportunities to expand your business.</p>
+            <p>We offer attractive franchise opportunities to help you expand your business and reach new markets.</p>
           </div>
         </div>
       </section>
 
       <section id="projects" className="App-projects">
-        <h2>Past Projects</h2>
-        <div className="projects-gallery">
-          <img src={projectImg1} alt="Project 1" />
-          <img src={projectImg2} alt="Project 2" />
-          <img src={projectImg3} alt="Project 3" />
-          <img src={projectImg4} alt="Project 4" />
-          <img src={projectImg5} alt="Project 5" />
-          <img src={projectImg6} alt="Project 6" />
-          {/* Add more images as needed */}
+        <h2>Our Projects</h2>
+        <div ref={projectsContainerRef} className="App-projects-row">
+          {visibleProjects.map((project, index) => (
+            <div key={index} className="App-card">
+              <img src={project.img} alt={project.title} />
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+            </div>
+          ))}
         </div>
+        <div className="scroll-buttons">
+          <button onClick={handleScrollLeft}>&lt;</button>
+          <button onClick={handleScrollRight}>&gt;</button>
+        </div>
+        {/* Show the button only if 'showAllProjects' is false */}
+        {!showAllProjects && (
+          <button className="view-more-button" onClick={() => setShowAllProjects(true)}>View More</button>
+        )}
       </section>
 
       <section id="contact" className="App-contact">

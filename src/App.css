@@ -1,5 +1,7 @@
+/* App.css */
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
 }
 
 .App-logo {
@@ -27,12 +29,44 @@
 }
 
 .App-navbar-links li {
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
 .App-navbar-links a {
-  color: #61dafb;
+  color: white;
   text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .App-navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background-color: #282c34;
+  }
+
+  .App-navbar-links.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
 }
 
 .App-header {
@@ -45,66 +79,96 @@
   padding: 20px;
 }
 
-.projects-gallery img {
-  width: 200px;
-  height: auto;
-  margin: 10px;
-}
-
-.App-services {
-  padding: 20px;
-}
-
-.App-services-row {
+.App-services-row, .App-projects-row {
   display: flex;
   justify-content: space-around;
-  margin: 20px 0;
+  flex-wrap: wrap;
 }
 
 .App-card {
-  border: 1px solid #ccc;
+  background: white;
   border-radius: 8px;
-  width: 30%;
-  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  overflow: hidden;
+  margin: 20px;
+  flex: 0 1 calc(33% - 40px);
+  box-sizing: border-box;
 }
 
 .App-card img {
   max-width: 100%;
-  border-radius: 8px;
 }
 
-.App-card h3 {
-  margin-top: 15px;
-  font-size: 1.2em;
-}
-
-.App-card p {
-  margin: 10px 0;
-}
-
-.projects-gallery {
+.contact-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px; /* Adjust the gap between images as needed */
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+  width: 100%;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #61dafb;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.map-container iframe {
+  width: 100%;
+  border: none;
+}
+
+/* Add specific styles for scroll buttons */
+.scroll-buttons {
+  display: flex;
   justify-content: center;
+  margin: 20px 0;
 }
 
-.projects-gallery img {
-  width: calc(33.333% - 10px); /* 3 images per row with gap */
-  height: auto;
-  border-radius: 8px;
+.scroll-buttons button {
+  background-color: #61dafb;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 0 10px;
 }
 
-@media (max-width: 768px) {
-  .projects-gallery img {
-    width: calc(50% - 10px); /* 2 images per row on smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .projects-gallery img {
-    width: 100%; /* 1 image per row on very small screens */
-  }
+/* Add specific styles for the view more button */
+.view-more-button {
+  background-color: #61dafb;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
 }
